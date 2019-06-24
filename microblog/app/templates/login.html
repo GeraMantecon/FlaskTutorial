@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Sign In</h1>
+  <form action="" method="post" novalidate>
+    <!--This line along with the SECRET KEY in config protects from CSRF-->
+    {{ form.hidden_tag() }}
+    <p>
+      <!--First line shows label and second one displays the field-->
+      {{ form.username.label }}
+      {{ form.username(size=32) }}<br>
+      <!--Check if validation returned error, if so show it.-->
+      {% for error in form.username.errors %}
+      <span style="color: red;">[{{ error}}]</span>
+      {% endfor %}
+    </p>
+    <p>
+      <!--First line shows label and second one displays the field-->
+      {{ form.password.label }}
+      {{ form.password(size=32) }}<br>
+      <!--Check if validation returned error, if so show it.-->
+      {% for error in form.password.errors %}
+      <span style="color: red;">[{{ error}}]</span>
+      {% endfor %}
+    </p>
+    <!--Display field and then label-->
+    <p>{{ form.remember_me() }}{{ form.remember_me.label }}</p>
+    <p>{{ form.submit() }}</p>
+  </form>
+{% endblock %}

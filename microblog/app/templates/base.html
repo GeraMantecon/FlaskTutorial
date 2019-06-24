@@ -7,8 +7,18 @@
     {% endif %}
   </head>
     <body>
-        <div>Microblog: | <a href="/index">Home</a> | <a href="/contact">Contact</a></div>
+        <div>Microblog: | <a href="/index">Home</a> | <a href="/contact">Contact</a> | <a href="/login">Log In</a></div>
         <hr>
+        <!--We load the messages avilables and if any we print them.-->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
         <!--Next line allows derived templates to insert themselves here-->
         {% block content %}{% endblock %}
     </body>
